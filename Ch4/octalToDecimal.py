@@ -6,8 +6,10 @@ Description:
 Input: 
 	octal number (string)
 Computations:
-	for each digit in octal number beginning from the right:
-		number = number + digit * 8 ^ postirion of digit  (begins from 0)
+	power = length of octal number - 1
+	for each digit in octal number beginning from the left:
+		number = number + digit * 8 ^ power
+		power--
 Output: 
 	decimal number (integer)
 """
