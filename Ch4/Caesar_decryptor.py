@@ -15,7 +15,18 @@ Computations and outputs:
 	return plaintext
 """
 
-text = input("Enter text to decrypt: ")
+option = input("Choose input option. 'C' - console, 'F' - file: ")
+if option == 'C':
+	text = input("Enter text to decrypt: ")
+elif option == 'F':
+	filename = input('Enter filename: ' )
+	file = open(filename, 'r')
+	text = file.read()
+	file.close()
+else:
+	print('Wrong option')
+	exit()
+
 distance = int(input("Enter shift distance: "))
 plaintext = ''
 

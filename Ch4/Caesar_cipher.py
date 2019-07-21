@@ -15,7 +15,18 @@ Computations and outputs:
 	return encrypted text
 """
 
-text = input("Enter text to encrypt: ")
+option = input("Choose input option. 'C' - console, 'F' - file: ")
+if option == 'C':
+	text = input("Enter text to encrypt: ")
+elif option == 'F':
+	filename = input('Enter filename: ' )
+	file = open(filename, 'r')
+	text = file.read()
+	file.close()
+else:
+	print('Wrong option')
+	exit()
+
 distance = int(input("Enter shift distance: "))
 encryptedText = ''
 
