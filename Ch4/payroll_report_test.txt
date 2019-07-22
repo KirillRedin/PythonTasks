@@ -1,0 +1,7 @@
+Redin 40 500
+Doe 200 2500
+Abrams 100 1200
+Grischuk 90 100
+Doll 60 900
+Pascal 200 100000
+Boole 200 1
