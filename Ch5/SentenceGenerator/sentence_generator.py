@@ -9,6 +9,7 @@ import random
 
 
 PREPOSITION_PROBABILITY = 0.5
+SECOND_CLAUSE_PROBABILITY = 0.2
 
 def main():
 	while True:
@@ -18,7 +19,13 @@ def main():
 		print()
 
 def generate_sentence():
-	return generate_noun_phrase() + ' ' + generate_verb_phrase()
+	main_part = generate_noun_phrase() + ' ' + generate_verb_phrase()
+	optional_part = get_word('conjunction') + ' ' + generate_noun_phrase() + ' ' + generate_verb_phrase()
+
+	if random.randint(1, 1/SECOND_CLAUSE_PROBABILITY) == 1:
+		return main_part + ' ' + optional_part
+	else:
+		return main_part
 
 def generate_noun_phrase():
 	return get_word('article') + ' ' + get_word('noun')
