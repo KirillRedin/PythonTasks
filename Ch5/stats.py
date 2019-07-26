@@ -3,7 +3,7 @@ Program: stats.py
 Author: Kirill Redin
 Description:
     This program counts median, mode and average
-    of a set of a numbers.
+    of a set of numbers.
 """
 
 def main():
@@ -42,6 +42,6 @@ def mode(numbers):
 def mean(numbers):
     return sum(numbers) / len(numbers)
 
-if '__name__' == '__main__':
+if __name__ == '__main__':
     main()
     
