@@ -8,6 +8,8 @@ Description:
 import random
 
 
+PREPOSITION_PROBABILITY = 0.5
+
 def main():
 	while True:
 		sentence_num = int(input("Enter number of sentencens: "))
@@ -22,7 +24,13 @@ def generate_noun_phrase():
 	return get_word('article') + ' ' + get_word('noun')
 
 def generate_verb_phrase():
-	return get_word('verb') + ' ' + generate_noun_phrase() + ' ' + generate_prepositional_phrase()
+	main_part = get_word('verb') + ' ' + generate_noun_phrase()
+	optional_part = generate_prepositional_phrase()
+
+	if random.randint(1, 1/PREPOSITION_PROBABILITY) == 1:
+		return main_part + ' ' + optional_part
+	else:
+		return main_part
 
 def generate_prepositional_phrase():
 	return get_word('preposition') + ' ' + generate_noun_phrase()
