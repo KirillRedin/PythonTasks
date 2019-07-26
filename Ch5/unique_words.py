@@ -16,12 +16,15 @@ def get_words(filename):
 	file = open(filename, 'r')
 	words = []
 	for line in file:
-		words += 	(line.split())
+		words += (line.split())
 	return words
 
 def get_unique_words(words):
-	unique_words = list(set(words))
-	unique_words.sort(key=str.lower)
+	unique_words = {}
+	for word in words:
+		unique_words[word] = words.count(word)
+	unique_words = list(unique_words.items())
+	unique_words.sort(key=lambda x: x[0].lower())
 	return unique_words
 
 if __name__ == '__main__':
