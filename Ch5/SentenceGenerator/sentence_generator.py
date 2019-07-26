@@ -10,6 +10,7 @@ import random
 
 PREPOSITION_PROBABILITY = 0.5
 SECOND_CLAUSE_PROBABILITY = 0.2
+ADJECTIVE_PROBABILITY = 0.5
 
 def main():
 	while True:
@@ -21,26 +22,26 @@ def main():
 def generate_sentence():
 	main_part = generate_noun_phrase() + ' ' + generate_verb_phrase()
 	optional_part = get_word('conjunction') + ' ' + generate_noun_phrase() + ' ' + generate_verb_phrase()
-
-	if random.randint(1, 1/SECOND_CLAUSE_PROBABILITY) == 1:
-		return main_part + ' ' + optional_part
-	else:
-		return main_part
+	return choose_random_phrase(main_part, main_part + ' ' + optional_part, SECOND_CLAUSE_PROBABILITY)
 
 def generate_noun_phrase():
-	return get_word('article') + ' ' + get_word('noun')
+	main_part = get_word('article') + ' ' + get_word('noun')
+	optional_part = get_word('article') + ' ' + get_word('adjective') + ' ' + get_word('noun')
+	return choose_random_phrase(main_part, optional_part, ADJECTIVE_PROBABILITY)
 
 def generate_verb_phrase():
 	main_part = get_word('verb') + ' ' + generate_noun_phrase()
 	optional_part = generate_prepositional_phrase()
-
-	if random.randint(1, 1/PREPOSITION_PROBABILITY) == 1:
-		return main_part + ' ' + optional_part
-	else:
-		return main_part
+	return choose_random_phrase(main_part, main_part + ' ' + optional_part, PREPOSITION_PROBABILITY)
 
 def generate_prepositional_phrase():
 	return get_word('preposition') + ' ' + generate_noun_phrase()
+
+def choose_random_phrase(first_phrase, second_phrase, probability):
+	if random.randint(1, 1/probability) == 1:
+		return second_phrase
+	else:
+		return first_phrase
 
 def get_word(word_type):
 	filename = word_type + 's.txt'
